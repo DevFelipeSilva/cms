@@ -38,7 +38,7 @@ The above copyright notice and this permission notice shall be included in all c
       <div class="container">
         <div class="row">
           <div class="col-lg-4 col-md-6 col-sm-8 ml-auto mr-auto">
-            <form class="form" method="" action="">
+            <form class="form" method="POST" action="#">
               <div class="card card-login card-hidden">
                 <div class="card-body ">
                   <p class="card-description text-center">
@@ -52,7 +52,7 @@ The above copyright notice and this permission notice shall be included in all c
                           <i class="material-icons">email</i>
                         </span>
                       </div>
-                      <input type="email" class="form-control" placeholder="Email">
+                      <input id="password-usuario" type="text" class="form-control" name="usuario" placeholder="Usuario">
                     </div>
                   </span>
                   <span class="bmd-form-group">
@@ -62,12 +62,12 @@ The above copyright notice and this permission notice shall be included in all c
                           <i class="material-icons">lock_outline</i>
                         </span>
                       </div>
-                      <input type="password" class="form-control" placeholder="Senha">
+                      <input id="password-senha" type="password" class="form-control" name="senha" placeholder="Senha">
                     </div>
                   </span>
                 </div>
                 <div class="card-footer justify-content-center">
-                  <a href="#pablo" class="btn btn-success" style="width: 100%;">Entrar</a>
+                  <a id="btn-login" class="btn btn-success" style="width: 100%;">Entrar</a>
                 </div>
               </div>
             </form>
@@ -76,6 +76,7 @@ The above copyright notice and this permission notice shall be included in all c
       </div>
     </div>
   </div>
+
   <!--   Core JS Files   -->
   <script src="/public/cms/assets/js/core/jquery.min.js"></script>
   <script src="/public/cms/assets/js/core/popper.min.js"></script>
@@ -91,6 +92,42 @@ The above copyright notice and this permission notice shall be included in all c
   <script src="/public/cms/assets/js/material-dashboard.js?v=2.1.2" type="text/javascript"></script>
   <!-- Material Dashboard DEMO methods, don't include it in your project! -->
   <script src="/public/cms/assets/demo/demo.js"></script>
+
+  <script>
+    $("#btn-login").click((e) => {
+      e.preventDefault()
+      console.log(e)
+      console.log($('#password-usuario').val())
+      console.log($('#password-senha').val())
+
+      const senha = $('#password-senha').val()
+      const usuario = $('#password-usuario').val()
+
+      $.ajax({
+        type: "POST",
+        url: "http://api.sdbusiness.com.br:3000/user/authenticate",
+        data: JSON.stringify({
+          usuario:usuario,
+          senha:senha,
+          cms:true
+        }),
+        processData: false,
+        contentType: 'application/json',
+        cache: false,
+        timeout: 600000,
+        complete: (data) => {
+          $("#btn-login").prop("disabled", false)
+          console.log(data.responseJSON)
+        },
+        error: (e) => {
+          $("#btnSubmit").prop("disabled", false)
+          alert("Ocorreu um erro inesperado: "+e)
+        }
+      });
+    })
+
+  </script>
+
   <script>
     $(document).ready(function() {
       $().ready(function() {

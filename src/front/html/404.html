@@ -1,0 +1,62 @@
+<!doctype html>
+<html lang="pt-br">
+
+<head>
+<title>Opa...</title>
+<meta charset="utf-8">
+<meta name="robots" content="index, follow">
+<meta name="keywords" content="">
+<meta name="description" content="">
+<meta name="theme-color" content="#002856">
+<meta name="author" content="Alessandro Piaz">
+
+<link rel="icon" href="/public/img/favicon.png" type="image/png">
+<link rel="stylesheet" href="/public/css/estilo.css" type="text/css">
+<link rel="stylesheet" href="/public/css/animate.css" type="text/css">
+<link rel="stylesheet" href="/public/css/fontes.css" type="text/css">
+
+<script src="/public/js/jquery-3.4.1.min.js"></script>
+<script type="text/javascript">
+$(window).on('load', function(){
+    setTimeout(function() {
+		$(".azul, .vermelho").css("width", "0");
+	}, 500);
+});
+
+$(window).on('load', function(){
+	setTimeout (function() {
+		$(".preloader").fadeOut(500);
+	}, 0);
+});
+</script>
+<head>
+
+<body>
+<div id="erro">
+	<div class="container">
+		<center>
+			<img src="/public/img/robo-404.png" width="250px" alt="">
+			<h2 align="center">Opa...</h2>
+			<p align="center">
+			A página que você procura não existe, ou está em manutenção, mas não se preocupe, vamos te redirecionar para nossa página inicial.
+			</p>
+			<a href="http://localhost:3001/index.html">
+				<div class="btn">
+					<p align="center">Redirecionar</p>
+				</div>
+			</a>
+		</center>
+	</div>
+</div>
+
+<div class="desktop">
+<div class="azul">
+</div>
+<div class="vermelho">
+</div>
+
+<div class="preloader">
+	<img src="/public/img/preloader.gif" width="150px" alt="">
+</div>
+</body>
+</html>

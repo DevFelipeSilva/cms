@@ -32,10 +32,10 @@ class Server{
 		app.use('/', routes)
 
 		// Default
-		app.get('/', (req, res) => res.render('index'))
+		app.get('/', (req, res) => res.render('html/index'))
 
 		// Error
-		app.get('*', (req, res) => res.render('error'))
+		app.get('*', (req, res) => res.render('html/404'))
 
 		app.listen(Number(process.env.PORT),String(process.env.HOST_NAME), () =>{
 		    console.log("Aplicação rodando na porta ",process.env.PORT)
