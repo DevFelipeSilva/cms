@@ -50,4 +50,8 @@ cmsRouter.get('/template', async (req, res) => {
 	res.end()
 })
 
+cmsRouter.get('/dashboard', async (req, res) => {
+    res.render('html/cms/examples/dashboard')
+    res.end()
+})
 module.exports = cmsRouter
