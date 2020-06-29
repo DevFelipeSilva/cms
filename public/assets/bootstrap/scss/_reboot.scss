@@ -2,7 +2,7 @@
 
 // Reboot
 //
-// Normalization of HTML elements, manually forked from Normalize.css to remove
+// Normalization of html elements, manually forked from Normalize.css to remove
 // styles targeting irrelevant browsers while applying new styles.
 //
 // Normalize is licensed MIT. https://github.com/necolas/normalize.css
@@ -476,7 +476,7 @@ template {
   display: none; // Add the correct display in IE
 }
 
-// Always hide an element with the `hidden` HTML attribute (from PureCSS).
+// Always hide an element with the `hidden` html attribute (from PureCSS).
 // Needed for proper display in IE 10-.
 [hidden] {
   display: none !important;

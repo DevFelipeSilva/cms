@@ -1,5 +1,10 @@
 const cmsRouter = require('express').Router()
 
+cmsRouter.get('/panel', async (req, res) => {
+    res.render('html/cms/examples/pages/login')
+    res.end()
+})
+
 cmsRouter.get('/cases', async (req, res) => {
     res.render('cases')
 	res.end()

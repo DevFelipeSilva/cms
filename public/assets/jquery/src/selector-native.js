@@ -204,7 +204,7 @@ jQuery.extend( {
 		// documentElement is verified for cases where it doesn't yet exist
 		// (such as loading iframes in IE - #4833)
 		var documentElement = elem && ( elem.ownerDocument || elem ).documentElement;
-		return documentElement ? documentElement.nodeName !== "HTML" : false;
+		return documentElement ? documentElement.nodeName !== "html" : false;
 	},
 	expr: {
 		attrHandle: {},
