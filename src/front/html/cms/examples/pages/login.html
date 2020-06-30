@@ -96,6 +96,7 @@ The above copyright notice and this permission notice shall be included in all c
   <script>
     $("#btn-login").click((e) => {
       e.preventDefault()
+
       // console.log(e)
       // console.log($('#password-usuario').val())
       // console.log($('#password-senha').val())
@@ -105,7 +106,7 @@ The above copyright notice and this permission notice shall be included in all c
 
       $.ajax({
         type: "POST",
-        url: "http://api.sdbusiness.com.br:3000/user/authenticate",
+        url: "https://api.sdbusiness.com.br:3000/user/authenticate",
         data: JSON.stringify({
           usuario:usuario,
           senha:senha,
@@ -121,9 +122,9 @@ The above copyright notice and this permission notice shall be included in all c
           // console.log(token)
           var token = data.responseJSON.token.accessToken
           var mensagem = data.responseJSON.message
-          if(mensagem == 'ok' && token != ''){
+          if(mensagem === 'ok' && token !== null ){
             localStorage.setItem("token", JSON.stringify( token ))
-            // this.ir();
+            localStorage.setItem("message", JSON.stringify( mensagem ))
             location.href = "/dashboard"
           }else{
             alert("vc errou")
@@ -135,23 +136,6 @@ The above copyright notice and this permission notice shall be included in all c
         }
       });
     })
-
-    function ir() {
-      $.ajax({
-        type: "GET",
-        url: "http://localhost:3001/dashboard",
-        processData: false,
-        cache: false,
-        timeout: 600000,
-        complete: (data) => {
-          $('html').html(data)
-        },
-        error: (e) => {
-          $("#btnSubmit").prop("disabled", false)
-          alert("Ocorreu um erro inesperado: "+e)
-        }
-      });
-    }
 
   </script>
 
