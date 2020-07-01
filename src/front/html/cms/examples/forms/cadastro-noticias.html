@@ -294,7 +294,7 @@ The above copyright notice and this permission notice shall be included in all c
 
                 <script>
                   jQuery(document).ready( function () {
-                    const token = localStorage.getItem("token")
+                    let token = localStorage.getItem("token")
                     // console.log(token)
                     $.ajax({
                       type: "GET",
@@ -332,20 +332,15 @@ The above copyright notice and this permission notice shall be included in all c
                   });
                 </script>
 
-                <div class="col-lg-5 col-md-6 col-sm-3">
-                  <label class="ml-3 col-form-label">Categoria</label>
-<!--                  <select class="selectpicker" data-style="select-with-transition" multiple title="Selecionar Categoria" data-size="7" id="categoria">-->
-<!--                    <option disabled> Multiple Options</option>-->
-<!--                    <option disabled> Multiple Options</option>-->
-<!--                    <option disabled> Multiple Options</option>-->
+                <div class="row">
+                  <label class="ml-5 col-2">Categoria</label>
 
-<!--                  </select>-->
-                  <select name="aaaa" id="categoria" class="form-control"  title="Selecionar Categoria" data-size="7" data-style="select-with-transition">
+                  <select name="aaaa" id="categoria" class="col-3 form-control" title="Selecionar Categoria" data-size="7" data-style="select-with-transition">
 
                   </select>
                 </div>
 
-                <div class="row">
+                <div class="row mt-3">
                   <label class="ml-5 col-form-label">Texto</label>
                   <div class="col-sm-10">
                     <div class="form-group">
@@ -372,10 +367,7 @@ The above copyright notice and this permission notice shall be included in all c
                   </div>
                 </div>
 
-<!--                <div class="row">-->
-<!--                  <label for="">Imagem</label>-->
-<!--                  <input type="file" id="imagem-enviar">-->
-<!--                </div>-->
+
 
 
                 <div class="row">
@@ -437,37 +429,51 @@ The above copyright notice and this permission notice shall be included in all c
             const data = new FormData(form);
 
 
-            data.append('file', $('input[type=file]')[0].files[0]);
-            data.append('text2', $('#titulo').val());
-            data.append('text', $('#subtitulo').val());
-            data.append('textarea', $('#mytextarea').val());
-            data.append('select', $('#categoria').val())
+            let img2 = data.append('filetoupload', $('#imagem-enviar')[0].files[0]);
+            data.append('titulo', $('#titulo').val());
+            data.append('subtitulo', $('#subtitulo').val());
+            const texto = $('#mytextarea').val()
+              data.append('categoria', $('#categoria').val())
 
-            let img = data.get('file')
-            let titulo = (data.get('text2'))
-            let subtitulo = data.get('text')
-            let categoria = data.get('select')
-            let texto = data.get('textarea')
+            let img = data.get('filetoupload')
+            let titulo = (data.get('titulo'))
+            let subtitulo = data.get('subtitulo')
+            let categoria = data.get('categoria')
+            // let texto = data.get('texto')
 
-            console.log(subtitulo);
-            console.log(titulo);
-            console.log(img);
-            console.log(categoria)
-            console.log(texto);
+            // console.log(subtitulo);
+            // console.log(titulo);
+            // console.log(img);
+            // console.log(categoria)
+            // console.log(texto);
+            console.log(texto)
+            // console.log(img)
 
 
             $("#btn-enviar").prop("disabled", true)
-
+            let token = localStorage.getItem("token")
+          console.log(img);
             $.ajax({
-              url: '',
+              url: 'https://api.sdbusiness.com.br:3000/cms/noticias',
               type: 'POST',
-              data: data,
+              data: JSON.stringify({
+                filetoupload: img2,
+                titulo:titulo,
+                subtitulo:subtitulo,
+                texto:texto,
+                categoria:categoria,
+              }),
+              headers: {
+                'x-access-token': token
+              },
               processData: false,
               contentType: 'application/json',
               cache: false,
               timeout: 600000,
-              complete: function(data) {
-                alert('inserido com sucesso')
+              complete: (data) => {
+                alert(data.response)
+                // var mensagem = data.responseJSON.message
+
               }
 
             })
