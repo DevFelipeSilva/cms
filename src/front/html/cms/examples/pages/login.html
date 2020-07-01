@@ -121,11 +121,12 @@ The above copyright notice and this permission notice shall be included in all c
           // console.log(data.responseJSON.message)
           // console.log(token)
           var token = data.responseJSON.token.accessToken
+          // console.log(token)
           var mensagem = data.responseJSON.message
           if(mensagem === 'ok' && token !== null ){
-            localStorage.setItem("token", JSON.stringify( token ))
-            localStorage.setItem("message", JSON.stringify( mensagem ))
-            location.href = "/dashboard"
+            localStorage.setItem("token", token)
+            localStorage.setItem("message", mensagem)
+            location.href = "/cadastrarnoticia"
           }else{
             alert("vc errou")
           }
