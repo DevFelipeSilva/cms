@@ -272,7 +272,7 @@ The above copyright notice and this permission notice shall be included in all c
                   <label class="ml-5 col-form-label">Título</label>
                   <div class="col-sm-10">
                     <div class="form-group">
-                      <input type="text" class="form-control" id="titulo">
+                      <input type="text" class="form-control" id="titulo" name="titulo">
                       <span class="bmd-help">Título para o banner</span>
                     </div>
                   </div>
@@ -287,7 +287,7 @@ The above copyright notice and this permission notice shall be included in all c
                     <label class="ml-5 col-form-label">Subtítulo</label>
                     <div class="col-sm-10">
                       <div class="form-group">
-                        <input type="text" class="form-control" id="subtitulo">
+                        <input type="text" class="form-control" id="subtitulo" name="subtitulo">
                       </div>
                     </div>
                   </div>
@@ -303,7 +303,7 @@ The above copyright notice and this permission notice shall be included in all c
                       contentType: "application/json; charset=utf-8",
                       cache: false,
                       headers: {
-                        'x-access-token': token
+                        'x-access-token': token,
                       },
                       beforeSend: () => {
                         swal({
@@ -335,7 +335,7 @@ The above copyright notice and this permission notice shall be included in all c
                 <div class="row">
                   <label class="ml-5 col-2">Categoria</label>
 
-                  <select name="aaaa" id="categoria" class="col-3 form-control" title="Selecionar Categoria" data-size="7" data-style="select-with-transition">
+                  <select name="categoria" id="categoria" class="col-3 form-control" title="Selecionar Categoria" data-size="7" data-style="select-with-transition">
 
                   </select>
                 </div>
@@ -360,7 +360,7 @@ The above copyright notice and this permission notice shall be included in all c
                           <span class="btn btn-facebook btn-round btn-file">
                             <span class="fileinput-new">Selecionar imagem</span>
                             <span class="fileinput-exists">Trocar</span>
-                            <input type="file" name="..." id="imagem-enviar" />
+                            <input type="file" name="filetoupload" id="imagem-enviar"  />
                           </span>
                       <a href="#pablo" class="btn btn-danger btn-round fileinput-exists" data-dismiss="fileinput"><i class="fa fa-times"></i> Remover</a>
                     </div>
@@ -429,55 +429,80 @@ The above copyright notice and this permission notice shall be included in all c
             const data = new FormData(form);
 
 
-            let img2 = data.append('filetoupload', $('#imagem-enviar')[0].files[0]);
-            data.append('titulo', $('#titulo').val());
-            data.append('subtitulo', $('#subtitulo').val());
-            const texto = $('#mytextarea').val()
-              data.append('categoria', $('#categoria').val())
+
+            data.append('filetoupload', $('#imagem-enviar')[0].files[0]);
+            data.append('titulo', JSON.stringify($('#titulo').val()));
+            data.append('subtitulo', JSON.stringify($('#subtitulo').val()));
+            data.append('categoria', JSON.stringify($('#categoria').val()))
+            data.append('texto', JSON.stringify($('#mytextarea').val()));
 
             let img = data.get('filetoupload')
             let titulo = (data.get('titulo'))
             let subtitulo = data.get('subtitulo')
             let categoria = data.get('categoria')
-            // let texto = data.get('texto')
+            let texto = data.get('texto')
 
-            // console.log(subtitulo);
+            // // console.log(subtitulo);
             // console.log(titulo);
-            // console.log(img);
-            // console.log(categoria)
-            // console.log(texto);
-            console.log(texto)
+            // // console.log(img);
+            // // console.log(categoria)
+            // // console.log(texto);
+            // console.log(texto)
             // console.log(img)
 
 
             $("#btn-enviar").prop("disabled", true)
             let token = localStorage.getItem("token")
-          console.log(img);
+          console.log(token);
             $.ajax({
               url: 'https://api.sdbusiness.com.br:3000/cms/noticias',
               type: 'POST',
               data: JSON.stringify({
-                filetoupload: img2,
-                titulo:titulo,
-                subtitulo:subtitulo,
-                texto:texto,
-                categoria:categoria,
+                'filetoupload': img,
+                'titulo': titulo,
+                'subtitulo': subtitulo,
+                'categoria': categoria,
+                'texto': texto
               }),
               headers: {
-                'x-access-token': token
-              },
-              processData: false,
-              contentType: 'application/json',
+                'x-access-token': token,
+                'Content-Type': 'application/json',
+          },
               cache: false,
               timeout: 600000,
               complete: (data) => {
-                alert(data.response)
+                // alert(data.responseJSON.message)
+                console.log(data)
                 // var mensagem = data.responseJSON.message
 
               }
 
             })
           }
+
+
+          // $(document).ready(function ($) {
+          //
+          //
+          //   $('#form-caralho').submit(function () {
+          //
+          //     const formulario = $('#form-caralho')
+          //     const formData = new FormData(formulario)
+          //
+          //     $.ajax({
+          //       url: 'https://api.sdbusiness.com.br:3000/cms/noticias',
+          //       type: 'POST',
+          //       data: formData,
+          //       dataType: 'json',
+          //       processData: false,
+          //       contentType: false,
+          //       success: (retoro) =>  {
+          //         console.log(formData)
+          //     }
+          //     })
+          //
+          //   })
+          // })
 
         </script>
 

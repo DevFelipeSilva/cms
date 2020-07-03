@@ -59,5 +59,10 @@ cmsRouter.get('/cadastrarnoticia', async (req, res) => {
     res.render('html/cms/examples/forms/cadastro-noticias')
     res.end()
 })
+cmsRouter.get('/listarnoticia', async (req, res) => {
+    res.render('html/cms/examples/tables/noticia-listar')
+    res.end()
+})
+
 
 module.exports = cmsRouter
