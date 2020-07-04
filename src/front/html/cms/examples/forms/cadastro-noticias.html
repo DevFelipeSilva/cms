@@ -72,7 +72,7 @@ The above copyright notice and this permission notice shall be included in all c
   <!-- Library for adding dinamically elements -->
   <script src="/public/cms/assets/js/plugins/arrive.min.js"></script>
   <!--  Google Maps Plugin    -->
-  <script src="https://maps.googleapis.com/maps/api/js?key=YOUR_KEY_HERE"></script>
+
   <!-- Chartist JS -->
   <script src="/public/cms/assets/js/plugins/chartist.min.js"></script>
   <!--  Notifications Plugin    -->
@@ -209,7 +209,7 @@ The above copyright notice and this permission notice shall be included in all c
           <span class="navbar-toggler-icon icon-bar"></span>
         </button>
         <div class="collapse navbar-collapse justify-content-end">
-          <form class="navbar-form" id="form-caralho">
+          <form class="navbar-form" id="#">
             <div class="input-group no-border">
               <input type="text" value="" class="form-control" placeholder="Search...">
               <button type="submit" class="btn btn-white btn-round btn-just-icon">
@@ -267,7 +267,7 @@ The above copyright notice and this permission notice shall be included in all c
         <div class="col-md-12">
           <div class="card ">
             <div class="card-body ">
-              <form method="POST" action="/" class="form-horizontal" id="form-noticia">
+              <form class="form-horizontal" id="form-noticia" >
                 <div class="row">
                   <label class="ml-5 col-form-label">Título</label>
                   <div class="col-sm-10">
@@ -425,22 +425,22 @@ The above copyright notice and this permission notice shall be included in all c
 
           function request(e) {
             e.preventDefault()
-            const form = $('#form-caralho')[0];
+            const form = $('#form-noticia')[0];
             const data = new FormData(form);
 
 
 
             data.append('filetoupload', $('#imagem-enviar')[0].files[0]);
-            data.append('titulo', JSON.stringify($('#titulo').val()));
-            data.append('subtitulo', JSON.stringify($('#subtitulo').val()));
-            data.append('categoria', JSON.stringify($('#categoria').val()))
-            data.append('texto', JSON.stringify($('#mytextarea').val()));
+            //data.append('titulo', JSON.stringify($('#titulo').val()));
+            //data.append('subtitulo', JSON.stringify($('#subtitulo').val()));
+            //data.append('categoria', JSON.stringify($('#categoria').val()))
+            //data.append('texto', JSON.stringify($('#mytextarea').val()));
+            const titulo = $('#titulo').val()
+            const subtitulo = $('#subtitulo').val()
+            const categoria = $('#categoria').val();
+            const texto = $('#texto').val();
 
             let img = data.get('filetoupload')
-            let titulo = (data.get('titulo'))
-            let subtitulo = data.get('subtitulo')
-            let categoria = data.get('categoria')
-            let texto = data.get('texto')
 
             // // console.log(subtitulo);
             // console.log(titulo);
@@ -450,27 +450,22 @@ The above copyright notice and this permission notice shall be included in all c
             // console.log(texto)
             // console.log(img)
 
-
             $("#btn-enviar").prop("disabled", true)
             let token = localStorage.getItem("token")
-          console.log(token);
+          // console.log(token);
+          console.log(data);
             $.ajax({
-              url: 'https://api.sdbusiness.com.br:3000/cms/noticias',
-              type: 'POST',
-              data: JSON.stringify({
-                'filetoupload': img,
-                'titulo': titulo,
-                'subtitulo': subtitulo,
-                'categoria': categoria,
-                'texto': texto
-              }),
+               url: 'https://api.sdbusiness.com.br:3000/cms/noticias/imagem/'+titulo+'&'+subtitulo+'&'+texto+'&'+categoria+'',
+              // url: 'https://api.sdbusiness.com.br:3000/cms/noticia',
+              type: 'GET',
+              data: data,
               headers: {
-                'x-access-token': token,
-                'Content-Type': 'application/json',
+                'x-access-token': token
           },
               cache: false,
               timeout: 600000,
               complete: (data) => {
+                
                 // alert(data.responseJSON.message)
                 console.log(data)
                 // var mensagem = data.responseJSON.message
@@ -480,29 +475,6 @@ The above copyright notice and this permission notice shall be included in all c
             })
           }
 
-
-          // $(document).ready(function ($) {
-          //
-          //
-          //   $('#form-caralho').submit(function () {
-          //
-          //     const formulario = $('#form-caralho')
-          //     const formData = new FormData(formulario)
-          //
-          //     $.ajax({
-          //       url: 'https://api.sdbusiness.com.br:3000/cms/noticias',
-          //       type: 'POST',
-          //       data: formData,
-          //       dataType: 'json',
-          //       processData: false,
-          //       contentType: false,
-          //       success: (retoro) =>  {
-          //         console.log(formData)
-          //     }
-          //     })
-          //
-          //   })
-          // })
 
         </script>
 
