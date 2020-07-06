@@ -267,7 +267,7 @@ The above copyright notice and this permission notice shall be included in all c
         <div class="col-md-12">
           <div class="card ">
             <div class="card-body ">
-              <form class="form-horizontal" id="form-noticia" >
+              <form class="form-horizontal" name="form-noticia" id="form-noticia" enctype="multipart/form-data">
                 <div class="row">
                   <label class="ml-5 col-form-label">Título</label>
                   <div class="col-sm-10">
@@ -425,59 +425,43 @@ The above copyright notice and this permission notice shall be included in all c
 
           function request(e) {
             e.preventDefault()
-            const form = $('#form-noticia')[0];
-            const data = new FormData(form);
+            const fs = new FormData();
+            const file = $('input[type="file"]')[0].files[0]
 
+            console.log(file)
 
+            fs.append("filetoupload", file)
 
-            data.append('filetoupload', $('#imagem-enviar')[0].files[0]);
-            //data.append('titulo', JSON.stringify($('#titulo').val()));
-            //data.append('subtitulo', JSON.stringify($('#subtitulo').val()));
-            //data.append('categoria', JSON.stringify($('#categoria').val()))
-            //data.append('texto', JSON.stringify($('#mytextarea').val()));
+            $("#btn-enviar").prop("disabled", true)
+
+            const URL = 'https://api.sdbusiness.com.br:3000/cms/noticias/imagem/'
+
+            let token = localStorage.getItem("token")
+
             const titulo = $('#titulo').val()
             const subtitulo = $('#subtitulo').val()
             const categoria = $('#categoria').val();
-            const texto = $('#texto').val();
+            const texto = $('#texto').val(); //FIXME esta indo undefined / null
+            
+            console.log(URL+titulo+'&'+subtitulo+'&'+'textoTeste'+'&'+categoria)
 
-            let img = data.get('filetoupload')
-
-            // // console.log(subtitulo);
-            // console.log(titulo);
-            // // console.log(img);
-            // // console.log(categoria)
-            // // console.log(texto);
-            // console.log(texto)
-            // console.log(img)
-
-            $("#btn-enviar").prop("disabled", true)
-            let token = localStorage.getItem("token")
-          // console.log(token);
-          console.log(data);
             $.ajax({
-               url: 'https://api.sdbusiness.com.br:3000/cms/noticias/imagem/'+titulo+'&'+subtitulo+'&'+texto+'&'+categoria+'',
-              // url: 'https://api.sdbusiness.com.br:3000/cms/noticia',
+               url: URL+titulo+'&'+subtitulo+'&'+texto+'&'+categoria,
               type: 'GET',
-              data: data,
+              data: fs,
               headers: {
                 'x-access-token': token
-          },
-              cache: false,
-              timeout: 600000,
+              },
+              contentType: false,
+              processData: false,
+              timeout: 60000,
               complete: (data) => {
-                
-                // alert(data.responseJSON.message)
                 console.log(data)
-                // var mensagem = data.responseJSON.message
-
               }
-
             })
           }
 
-
         </script>
-
 
         <script>
           $(document).ready(function() {
