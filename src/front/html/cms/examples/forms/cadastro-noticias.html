@@ -267,7 +267,7 @@ The above copyright notice and this permission notice shall be included in all c
         <div class="col-md-12">
           <div class="card ">
             <div class="card-body ">
-              <form action="https://api.sdbusiness.com.br:3000/cms/noticias" method="post" class="form-horizontal" id="form-noticia" enctype="multipart/form-data">
+              <form  method="post" class="form-horizontal" id="form-noticia" enctype="multipart/form-data">
                 <div class="row">
                   <label class="ml-5 col-form-label">Título</label>
                   <div class="col-sm-10">
@@ -344,10 +344,14 @@ The above copyright notice and this permission notice shall be included in all c
                   <label class="ml-5 col-form-label">Texto</label>
                   <div class="col-sm-10">
                     <div class="form-group">
-                      <input type="text" id="mytextarea" name="texto"></input>
+                      <input type="text" id="mytextarea" name="texto">
                     </div>
                   </div>
                 </div>
+
+<!--                <div class="row mt-3" id="token">-->
+<!--                  <input type="hidden" name="token" id="token2">-->
+<!--                </div>-->
 
                 <div class="col-md-4 col-sm-4 ml-3 row">
                   <h4 class="title">Imagem do banner</h4>
@@ -419,53 +423,59 @@ The above copyright notice and this permission notice shall be included in all c
             </footer>
           </div>
         </div>
-        <script>
 
-          //$("#btn-enviar").click((e)=>request(e));
+<!--        <script>-->
 
-          function request(e) {
-            e.preventDefault()
-            const fs = new FormData();
-            const file = $('input[type="file"]')[0].files[0]
+<!--          $("#btn-enviar").click((e)=>request(e));-->
 
-            console.log(file)
+<!--          function request() {-->
+<!--            // e.preventDefault()-->
 
-            fs.append("filetoupload", file)
+<!--            $("#btn-enviar").prop("disabled", true)-->
+<!--            let token = localStorage.getItem("token")-->
+<!--            console.log(token);-->
+<!--            $.ajax({-->
+<!--              url: 'https://api.sdbusiness.com.br:3000/cms/noticias?token=' + token + '',-->
+<!--              type: 'POST',-->
+<!--              headers: {-->
+<!--                'x-access-token': token,-->
+<!--              },-->
+<!--              cache: false,-->
+<!--              timeout: 600000,-->
+<!--              complete: (data) => {-->
+<!--                // alert(data.responseJSON.message)-->
+<!--                console.log(data)-->
+<!--                // var mensagem = data.responseJSON.message-->
 
-            $("#btn-enviar").prop("disabled", true)
+<!--              }-->
 
-            const URL = 'https://api.sdbusiness.com.br:3000/cms/noticias/imagem/'
+<!--            })-->
+<!--          }-->
 
-            let token = localStorage.getItem("token")
+<!--            // console.log(img)-->
 
-            const titulo = $('#titulo').val()
-            const subtitulo = $('#subtitulo').val()
-            const categoria = $('#categoria').val();
-            const texto = $('#texto').val(); //FIXME esta indo undefined / null
-            
-            console.log(URL+titulo+'&'+subtitulo+'&'+'textoTeste'+'&'+categoria)
 
-            $.ajax({
-               url: URL+titulo+'&'+subtitulo+'&'+texto+'&'+categoria,
-              type: 'GET',
-              data: fs,
-              headers: {
-                'x-access-token': token
-              },
-              contentType: false,
-              processData: false,
-              timeout: 60000,
-              complete: (data) => {
-                console.log(data)
-              }
-            })
-          }
 
-        </script>
+
+
+
+
+
+<!--        </script>-->
+
 
         <script>
           $(document).ready(function() {
             $().ready(function() {
+              const token = localStorage.getItem("token")
+
+              const URL = 'https://api.sdbusiness.com.br:3000/cms/noticias?token='+token+'';
+
+              // $(document).ready( () => {
+              //   console.log(caralho);
+                $('form#form-noticia').attr('action', URL);
+              // });
+
               $sidebar = $('.sidebar');
 
               $sidebar_img_container = $sidebar.find('.sidebar-background');

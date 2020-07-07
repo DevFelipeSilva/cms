@@ -63,6 +63,10 @@ cmsRouter.get('/listarnoticia', async (req, res) => {
     res.render('html/cms/examples/tables/noticia-listar')
     res.end()
 })
+cmsRouter.get('/slideshow', async (req, res) => {
+    res.render('html/testebanner')
+    res.end()
+})
 
 
 module.exports = cmsRouter
