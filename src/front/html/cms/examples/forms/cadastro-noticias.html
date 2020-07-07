@@ -298,7 +298,7 @@ The above copyright notice and this permission notice shall be included in all c
                     // console.log(token)
                     $.ajax({
                       type: "GET",
-                      url: 'https://api.sdbusiness.com.br:3000/cms/categorias',
+                      url: 'https://api.sdbusiness.com.br:3002/cms/categorias',
                       timeout: 3000,
                       contentType: "application/json; charset=utf-8",
                       cache: false,
@@ -469,7 +469,8 @@ The above copyright notice and this permission notice shall be included in all c
             $().ready(function() {
               const token = localStorage.getItem("token")
 
-              const URL = 'https://api.sdbusiness.com.br:3000/cms/noticias?token='+token+'';
+              const URL = 'https://api.sdbusiness.com.br:3002/cms/noticias?token='+token+'';
+              console.log(URL);
 
               // $(document).ready( () => {
               //   console.log(caralho);
