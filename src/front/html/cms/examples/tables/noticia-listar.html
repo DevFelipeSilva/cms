@@ -89,7 +89,7 @@ The above copyright notice and this permission notice shall be included in all c
 
       <ul class="nav">
         <li class="nav-item active ">
-          <a class="nav-link" href="..tml">
+          <a class="nav-link" href="/dashboard">
             <i class="material-icons">dashboard</i>
             <p> Dashboard </p>
           </a>
@@ -104,13 +104,13 @@ The above copyright notice and this permission notice shall be included in all c
           <div class="collapse" id="pagesExamples">
             <ul class="nav">
               <li class="nav-item ">
-                <a class="nav-link" href="pages/pricing.html">
+                <a class="nav-link" href="/listarbanner">
                   <span class="sidebar-mini"> P </span>
                   <span class="sidebar-normal"> Listar </span>
                 </a>
               </li>
               <li class="nav-item ">
-                <a class="nav-link" href="pages/rtl.html">
+                <a class="nav-link" href="/cadastrarbanner">
                   <span class="sidebar-mini"> RS </span>
                   <span class="sidebar-normal"> Adicionar </span>
                 </a>
@@ -128,25 +128,13 @@ The above copyright notice and this permission notice shall be included in all c
           <div class="collapse" id="componentsExamples">
             <ul class="nav">
               <li class="nav-item ">
-                <a class="nav-link" data-toggle="collapse" href="#componentsCollapse">
+                <a class="nav-link" data-toggle="collapse" href="#">
                   <span class="sidebar-mini"> MLT </span>
-                  <span class="sidebar-normal"> Listar
-
-                    </span>
-                </a>
-                <div class="collapse" id="componentsCollapse">
-
-                </div>
-              </li>
-
-              <li class="nav-item ">
-                <a class="nav-link" href="components/sweet-alert.html">
-                  <span class="sidebar-mini"> SA </span>
-                  <span class="sidebar-normal"> Sweet Alert </span>
+                  <span class="sidebar-normal"> Listar</span>
                 </a>
               </li>
               <li class="nav-item ">
-                <a class="nav-link" href="components/sweet-alert.html">
+                <a class="nav-link" href="/cadastrarnoticia">
                   <span class="sidebar-mini"> SA </span>
                   <span class="sidebar-normal"> Adicionar </span>
                 </a>
@@ -246,20 +234,7 @@ The above copyright notice and this permission notice shall be included in all c
                       <th class="text-right"></th>
                     </tr>
                     </thead>
-                    <tbody>
-                    <tr>
-                      <td>Felipe</td>
-                      <td>2013</td>
-                      <td class="td-actions text-right">
-                        <button type="button" rel="tooltip" class="btn btn-success">
-                          <i class="material-icons">edit</i>
-                        </button>
-                        <button type="button" rel="tooltip" class="btn btn-danger">
-                          <i class="material-icons">close</i>
-                        </button>
-                      </td>
-                    </tr>
-
+                    <tbody id="noticias">
                     </tbody>
                   </table>
                 </div>
@@ -337,11 +312,29 @@ The above copyright notice and this permission notice shall be included in all c
         // console.log(retornoCards);
         // console.log(retornoCards['result']);
 
-//        $.each(retornoCards['result'], (i, dadoCard) => {
+     $.each(retornoCards['result'], (i, dadoCard) => {
           JSON.stringify(retornoCards)
 
-         console.log(retornoCards.result)
-  //      });
+          const titulo = dadoCard.TITULO;
+          const data = dadoCard.DATA;
+         // console.log(dadoCard)
+         // console.log(titulo)
+         //
+         //  console.log(titulo)
+         //  console.log(data)
+          $('tbody#noticias').append('<tr>\n' +
+                  '<td>'+ titulo +'</td>\n' +
+                  '<td>'+ data +'</td>\n' +
+                  '<td class="td-actions text-right">\n' +
+              '            <button type="button" rel="tooltip" class="btn btn-success">\n' +
+              '                    <i class="material-icons">edit</i>\n' +
+              '            </button>\n' +
+              '            <button type="button" rel="tooltip" class="btn btn-danger">\n' +
+              '                    <i class="material-icons">close</i>\n' +
+              '            </button>\n' +
+              '     </td>'+
+              '</tr>')
+       });
       }
     })
   });

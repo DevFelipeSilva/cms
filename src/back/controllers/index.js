@@ -67,6 +67,14 @@ cmsRouter.get('/slideshow', async (req, res) => {
     res.render('html/testebanner')
     res.end()
 })
+cmsRouter.get('/cadastrarbanner', async (req, res) => {
+    res.render('html/cms/examples/forms/cadastro-banners')
+    res.end()
+})
+cmsRouter.get('/listarbanner', async (req, res) => {
+    res.render('html/cms/examples/tables/banner-listar')
+    res.end()
+})
 
 
 module.exports = cmsRouter
