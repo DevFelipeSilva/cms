@@ -2,6 +2,8 @@
 <html>
 <head>
     <meta name="viewport" content="width=device-width, initial-scale=1">
+    <script src="/public/cms/assets/js/core/jquery.min.js"></script>
+    <script src="/public/cms/assets/js/core/popper.min.js"></script>
     <style>
        
         body {font-family: Verdana, sans-serif;}
@@ -112,8 +114,8 @@
 
     function showSlides() {
         var i;
-        var slides = document.getElementsByClassName("mySlides");
-        var dots = document.getElementsByClassName("dot");
+        var slides = $(".mySlides");
+        var dots = $(".dot");
         for (i = 0; i < slides.length; i++) {
             slides[i].style.display = "none";
         }
