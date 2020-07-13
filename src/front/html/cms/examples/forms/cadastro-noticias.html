@@ -105,23 +105,18 @@ The above copyright notice and this permission notice shall be included in all c
 
 <body class="">
 <div class="wrapper ">
-  <div class="sidebar" data-color="black" data-background-color="black" style="z-index: 99999999" data-image="assets/img/sidebar-6.png">
-    <!--
-      Tip 1: You can change the color of the sidebar using: data-color="purple | azure | green | orange | danger"
-
-      Tip 2: you can also add an image using data-image tag
-  -->
+  <div class="sidebar" data-color="black" data-background-color="black" style="z-index: 99999999" data-image="/public/cms/assets/img/sidebar-6.png">
     <div class="logo"><a href="http://www.creative-tim.com" class="simple-text logo-mini">
-      CT
+      CMS
     </a>
       <a href="http://www.creative-tim.com" class="simple-text logo-normal">
-        Creative Tim
+        SdRedes
       </a></div>
     <div class="sidebar-wrapper">
 
       <ul class="nav">
         <li class="nav-item active ">
-          <a class="nav-link" href="..tml">
+          <a class="nav-link" href="/dashboard">
             <i class="material-icons">dashboard</i>
             <p> Dashboard </p>
           </a>
@@ -136,13 +131,13 @@ The above copyright notice and this permission notice shall be included in all c
           <div class="collapse" id="pagesExamples">
             <ul class="nav">
               <li class="nav-item ">
-                <a class="nav-link" href="..er-listar.html">
+                <a class="nav-link" href="/listarbanner">
                   <span class="sidebar-mini"> P </span>
                   <span class="sidebar-normal"> Listar </span>
                 </a>
               </li>
               <li class="nav-item ">
-                <a class="nav-link" href="..rs.html">
+                <a class="nav-link" href="/cadastrarbanner">
                   <span class="sidebar-mini"> RS </span>
                   <span class="sidebar-normal"> Adicionar </span>
                 </a>
@@ -161,20 +156,80 @@ The above copyright notice and this permission notice shall be included in all c
             <ul class="nav">
               <li class="nav-item ">
                 <a class="nav-link"  href="/listarnoticia">
-                  <span class="sidebar-mini"> LTN </span>
-                  <span class="sidebar-normal"> Listar</span>
+                  <span class="sidebar-mini"> MLT </span>
+                  <span class="sidebar-normal"> Listar
+
+                    </span>
+                </a>
+                <div class="collapse" id="componentsCollapse">
+
+                </div>
+              </li>
+              <li class="nav-item ">
+                <a class="nav-link" href="/cadastrarnoticia">
+                  <span class="sidebar-mini"> SA </span>
+                  <span class="sidebar-normal"> Adicionar </span>
                 </a>
               </li>
-
               <li class="nav-item ">
-                <a class="nav-link" href="#">
-                  <span class="sidebar-mini"> ADN </span>
-                  <span class="sidebar-normal"> Adicionar </span>
+                <a class="nav-link" href="/cadastrarcategoria">
+                  <span class="sidebar-mini"> SA </span>
+                  <span class="sidebar-normal"> Adicionar Categoria </span>
                 </a>
               </li>
             </ul>
           </div>
         </li>
+        <li class="nav-item ">
+          <a class="nav-link" data-toggle="collapse" href="#formsExamples">
+            <i class="material-icons">content_paste</i>
+            <p> Cases
+              <b class="caret"></b>
+            </p>
+          </a>
+          <div class="collapse" id="formsExamples">
+            <ul class="nav">
+              <li class="nav-item ">
+                <a class="nav-link" href="/cadastrarcase">
+                  <span class="sidebar-mini"> Ad </span>
+                  <span class="sidebar-normal"> Adicionar cases </span>
+                </a>
+              </li>
+              <li class="nav-item ">
+                <a class="nav-link" href="/listarcase">
+                  <span class="sidebar-mini"> Li </span>
+                  <span class="sidebar-normal"> Listar cases </span>
+                </a>
+              </li>
+            </ul>
+          </div>
+        </li>
+
+        <li class="nav-item ">
+          <a class="nav-link" data-toggle="collapse" href="#tablesExamples">
+            <i class="material-icons">grid_on</i>
+            <p> Serviços
+              <b class="caret"></b>
+            </p>
+          </a>
+          <div class="collapse" id="tablesExamples">
+            <ul class="nav">
+              <li class="nav-item ">
+                <a class="nav-link" href="/cadastrarservico">
+                  <span class="sidebar-mini"> Ad </span>
+                  <span class="sidebar-normal"> Adicionar Serviços </span>
+                </a>
+              </li>
+              <li class="nav-item ">
+                <a class="nav-link" href="/listarservico">
+                  <span class="sidebar-mini"> Li </span>
+                  <span class="sidebar-normal"> Listar Servios </span>
+                </a>
+              </li>
+            </ul>
+          </div>
+        </li>
+
       </ul>
     </div>
   </div>

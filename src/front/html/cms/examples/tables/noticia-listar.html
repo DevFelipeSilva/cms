@@ -73,17 +73,12 @@ The above copyright notice and this permission notice shall be included in all c
 
 <body class="">
 <div class="wrapper ">
-  <div class="sidebar" data-color="black" data-background-color="black" style="z-index: 99999999" data-image="assets/img/sidebar-6.png">
-    <!--
-      Tip 1: You can change the color of the sidebar using: data-color="purple | azure | green | orange | danger"
-
-      Tip 2: you can also add an image using data-image tag
-  -->
+  <div class="sidebar" data-color="black" data-background-color="black" style="z-index: 99999999" data-image="/public/cms/assets/img/sidebar-6.png">
     <div class="logo"><a href="http://www.creative-tim.com" class="simple-text logo-mini">
-      CT
+      CMS
     </a>
       <a href="http://www.creative-tim.com" class="simple-text logo-normal">
-        Creative Tim
+        SdRedes
       </a></div>
     <div class="sidebar-wrapper">
 
@@ -128,10 +123,15 @@ The above copyright notice and this permission notice shall be included in all c
           <div class="collapse" id="componentsExamples">
             <ul class="nav">
               <li class="nav-item ">
-                <a class="nav-link" data-toggle="collapse" href="#">
+                <a class="nav-link"  href="/listarnoticia">
                   <span class="sidebar-mini"> MLT </span>
-                  <span class="sidebar-normal"> Listar</span>
+                  <span class="sidebar-normal"> Listar
+
+                    </span>
                 </a>
+                <div class="collapse" id="componentsCollapse">
+
+                </div>
               </li>
               <li class="nav-item ">
                 <a class="nav-link" href="/cadastrarnoticia">
@@ -139,9 +139,65 @@ The above copyright notice and this permission notice shall be included in all c
                   <span class="sidebar-normal"> Adicionar </span>
                 </a>
               </li>
+              <li class="nav-item ">
+                <a class="nav-link" href="/cadastrarcategoria">
+                  <span class="sidebar-mini"> SA </span>
+                  <span class="sidebar-normal"> Adicionar Categoria </span>
+                </a>
+              </li>
             </ul>
           </div>
         </li>
+        <li class="nav-item ">
+          <a class="nav-link" data-toggle="collapse" href="#formsExamples">
+            <i class="material-icons">content_paste</i>
+            <p> Cases
+              <b class="caret"></b>
+            </p>
+          </a>
+          <div class="collapse" id="formsExamples">
+            <ul class="nav">
+              <li class="nav-item ">
+                <a class="nav-link" href="/cadastrarcase">
+                  <span class="sidebar-mini"> Ad </span>
+                  <span class="sidebar-normal"> Adicionar cases </span>
+                </a>
+              </li>
+              <li class="nav-item ">
+                <a class="nav-link" href="/listarcase">
+                  <span class="sidebar-mini"> Li </span>
+                  <span class="sidebar-normal"> Listar cases </span>
+                </a>
+              </li>
+            </ul>
+          </div>
+        </li>
+
+        <li class="nav-item ">
+          <a class="nav-link" data-toggle="collapse" href="#tablesExamples">
+            <i class="material-icons">grid_on</i>
+            <p> Serviços
+              <b class="caret"></b>
+            </p>
+          </a>
+          <div class="collapse" id="tablesExamples">
+            <ul class="nav">
+              <li class="nav-item ">
+                <a class="nav-link" href="/cadastrarservico">
+                  <span class="sidebar-mini"> Ad </span>
+                  <span class="sidebar-normal"> Adicionar Serviços </span>
+                </a>
+              </li>
+              <li class="nav-item ">
+                <a class="nav-link" href="/listarservico">
+                  <span class="sidebar-mini"> Li </span>
+                  <span class="sidebar-normal"> Listar Servios </span>
+                </a>
+              </li>
+            </ul>
+          </div>
+        </li>
+
       </ul>
     </div>
   </div>
@@ -317,6 +373,8 @@ The above copyright notice and this permission notice shall be included in all c
 
           const titulo = dadoCard.TITULO;
           const data = dadoCard.DATA;
+          const id = dadoCard.ID;
+          console.log(id);
          // console.log(dadoCard)
          // console.log(titulo)
          //
@@ -326,12 +384,12 @@ The above copyright notice and this permission notice shall be included in all c
                   '<td>'+ titulo +'</td>\n' +
                   '<td>'+ data +'</td>\n' +
                   '<td class="td-actions text-right">\n' +
-              '            <button type="button" rel="tooltip" class="btn btn-success">\n' +
+              '            <a type="button" rel="tooltip" class="btn btn-success">\n' +
               '                    <i class="material-icons">edit</i>\n' +
-              '            </button>\n' +
-              '            <button type="button" rel="tooltip" class="btn btn-danger">\n' +
+              '            </a>\n' +
+              '            <a type="button" rel="tooltip" class="btn btn-danger">\n' +
               '                    <i class="material-icons">close</i>\n' +
-              '            </button>\n' +
+              '            </a>\n' +
               '     </td>'+
               '</tr>')
        });

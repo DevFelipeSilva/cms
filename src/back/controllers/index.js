@@ -75,6 +75,26 @@ cmsRouter.get('/listarbanner', async (req, res) => {
     res.render('html/cms/examples/tables/banner-listar')
     res.end()
 })
+cmsRouter.get('/cadastrarcategoria', async (req, res) => {
+    res.render('html/cms/examples/forms/cadastro-categoria')
+    res.end()
+})
+cmsRouter.get('/cadastrarcase', async (req, res) => {
+    res.render('html/cms/examples/forms/cadastro-cases')
+    res.end()
+})
+cmsRouter.get('/cadastrarservico', async (req, res) => {
+    res.render('html/cms/examples/forms/cadastro-servicos')
+    res.end()
+})
+cmsRouter.get('/listarcase', async (req, res) => {
+    res.render('html/cms/examples/tables/cases-listar')
+    res.end()
+})
+cmsRouter.get('/listarservico', async (req, res) => {
+    res.render('html/cms/examples/tables/servicos-listar')
+    res.end()
+})
 
 
 module.exports = cmsRouter
